@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="example">
+<head>
+    <title>App title</title>
+<!--
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+-->
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/nv.d3.css">
+
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="js/angular-nvd3.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/nv.d3.js"></script>
+<!--
+    <script type="text/javascript" src="js/angularjs-nvd3-directives.js"></script>
+-->
+
+</head>
+<body>
+
+<section class="container" ng-controller="PieChartController as pie">
+    <table class="table">
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+        <tr ng-repeat="item in data | orderBy: '-value'">
+            <td>{{item.key}}</td>
+            <td>{{item.value}}</td>
+        </tr>
+    </table>
+
+    <nvd3 options="options" data="data"></nvd3>
+</section>
+</body>
+</html>

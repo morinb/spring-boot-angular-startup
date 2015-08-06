@@ -1,0 +1,3 @@
+Application-Name: Spring Boot Angular Startup
+Application-Description: Skeleton project For Web application with Angular JS powered by Spring Boot.
+Application-Version: 0.0.1-SNAPSHOT
