@@ -1,7 +1,22 @@
 (function () {
     'use strict';
 
-    var app = angular.module('example', ['nvd3']);
+    function string2json(str) {
+        return eval("(" + str + ")");
+    }
+
+    function callSync(method, url, defaultValue) {
+        var request = new XMLHttpRequest();
+        request.open(method, url, false);
+        request.send(null);
+
+        if (request.status === 200) {
+            return string2json(request.response);
+        }
+        return defaultValue;
+    }
+
+    var app = angular.module('example', ['nvd3', 'angularGrid']);
 
     app.constant('HttpConfig', {
         url: 'http://localhost:9880/'
@@ -34,8 +49,51 @@
             }
         };
 
-         $http.get(HttpConfig.url + 'exampleData').success(function(data) {
-             $scope.data = data;
+        $http.get(HttpConfig.url + 'exampleData').success(function (data) {
+            $scope.data = data;
         });
-    })
+    });
+
+    app.controller('RosterController', function ($scope, $http, HttpConfig) {
+
+        function hvg(params) {
+            console.log(params.colDef.headerName);
+
+            var model = callSync('GET', HttpConfig.url + 'rosterModel/' + params.colDef.headerName, params.colDef);
+
+            return model.headerName;
+        }
+
+        var columnDefs = [
+            {headerName: "0", field: "make", headerValueGetter: hvg},
+            {headerName: "1", field: "model", headerValueGetter: hvg},
+            {headerName: "2", field: "price", headerValueGetter: hvg}
+        ];
+
+        var rowData = [
+            {make: "Toyota", model: "Celica", price: 35000},
+            {make: "Ford", model: "Mondeo", price: 32000},
+            {make: "Porsche", model: "Boxter", price: 72000}
+        ];
+
+
+        $scope.gridOptions = {
+            columnDefs: columnDefs,
+            rowData: null,
+            dontUseScrolls: true // because so little data, no need to use scrollbars.
+
+        };
+        /* $http.get(HttpConfig.url + "rosterModel").then(function (model) {
+         $scope.gridOptions.columnDefs = model.data;
+         $scope.gridOptions.api.refreshHeader();
+         }
+         );*/
+        $http.get(HttpConfig.url + "rosterDatas").then(function (rows) {
+            $scope.gridOptions.rowData = rows.data;
+            $scope.gridOptions.api.onNewRows();
+        });
+
+
+    });
+
 })();
