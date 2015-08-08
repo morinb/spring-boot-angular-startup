@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Baptiste on 06/08/2015.
- */
 @RestController
 public class ExampleController {
     private List<ColumnModel> model = new ArrayList<>();
@@ -81,13 +78,6 @@ public class ExampleController {
 
         rowDatas.add(getRow("Toyota", "Celica", 35000));
         rowDatas.add(getRow("Ford", "Mondeo", 32000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
-        rowDatas.add(getRow("Porsche", "Boxter", 72000));
         rowDatas.add(getRow("Porsche", "Boxter", 72000));
 
         return rowDatas;

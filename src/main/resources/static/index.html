@@ -26,6 +26,11 @@
 </head>
 <body>
 
+<section ng-controller="RosterController as rosterCtrl">
+    <div class="container">
+        <div ag-grid="gridOptions" class="ag-fresh" style="height: 100%"></div>
+    </div>
+</section>
 <section ng-controller="PieChartController as pie">
     <div class="container">
         <table class="table">
@@ -41,12 +46,7 @@
 
         <nvd3 options="options" data="data"></nvd3>
     </div>
-</section>
 
-<section ng-controller="RosterController as rosterCtrl">
-    <div class="container">
-        <div ag-grid="gridOptions" class="ag-fresh" style="height: 100%"></div>
-    </div>
 </section>
 </body>
 </html>

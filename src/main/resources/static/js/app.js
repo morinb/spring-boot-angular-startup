@@ -56,7 +56,7 @@
 
     app.controller('RosterController', function ($scope, $http, HttpConfig) {
 
-        function hvg(params) {
+        function getHeaderName(params) {
             console.log(params.colDef.headerName);
 
             var model = callSync('GET', HttpConfig.url + 'rosterModel/' + params.colDef.headerName, params.colDef);
@@ -65,17 +65,10 @@
         }
 
         var columnDefs = [
-            {headerName: "0", field: "make", headerValueGetter: hvg},
-            {headerName: "1", field: "model", headerValueGetter: hvg},
-            {headerName: "2", field: "price", headerValueGetter: hvg}
+            {headerName: "0", field: "make", headerValueGetter: getHeaderName},
+            {headerName: "1", field: "model", headerValueGetter: getHeaderName},
+            {headerName: "2", field: "price", headerValueGetter: getHeaderName}
         ];
-
-        var rowData = [
-            {make: "Toyota", model: "Celica", price: 35000},
-            {make: "Ford", model: "Mondeo", price: 32000},
-            {make: "Porsche", model: "Boxter", price: 72000}
-        ];
-
 
         $scope.gridOptions = {
             columnDefs: columnDefs,
