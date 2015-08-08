@@ -76,11 +76,7 @@
             dontUseScrolls: true // because so little data, no need to use scrollbars.
 
         };
-        /* $http.get(HttpConfig.url + "rosterModel").then(function (model) {
-         $scope.gridOptions.columnDefs = model.data;
-         $scope.gridOptions.api.refreshHeader();
-         }
-         );*/
+
         $http.get(HttpConfig.url + "rosterDatas").then(function (rows) {
             $scope.gridOptions.rowData = rows.data;
             $scope.gridOptions.api.onNewRows();
